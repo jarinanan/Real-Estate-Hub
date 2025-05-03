@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Hub - Find Your Dream Home</title>
+    <!-- Add Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo" onclick="showSection('home')">
+                <h1>Real Estate Hub</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" onclick="showSection('home')" id="homeNav" class="active">Home</a>
+                <a href="#" onclick="showSection('listings')" id="listingsNav">Listings</a>
+                <a href="#" onclick="showSection('about')" id="aboutNav">About Us</a>
+                <a href="#" onclick="showSection('contact')" id="contactNav">Contact</a>
+                <a href="#" onclick="showSection('favorites')" id="favoritesNav">Favorites</a>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="user-profile">
+                <button>
+                    <span>My Account</span>
+                    <span class="icon">▼</span>
+                </button>
+                <div class="dropdown">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                        <span class="notification-badge">3</span>
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="overlay"></div>
+    <div class="mobile-menu">
+        <button class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav class="mobile-nav">
+            <a href="#" onclick="showSection('home'); closeMobileMenu();" id="mobileHomeNav" class="active">Home</a>
+            <a href="#" onclick="showSection('listings'); closeMobileMenu();" id="mobileListingsNav">Listings</a>
+            <a href="#" onclick="showSection('about'); closeMobileMenu();" id="mobileAboutNav">About Us</a>
+            <a href="#" onclick="showSection('contact'); closeMobileMenu();" id="mobileContactNav">Contact</a>
+            <a href="#" onclick="showSection('favorites'); closeMobileMenu();" id="mobileFavoritesNav">Favorites</a>
+        </nav>
+        <div class="mobile-user-menu">
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
+            <a href="#">
+                <i class="fas fa-bell"></i>
+                Notifications
+                <span class="notification-badge">3</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="homeSection" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h2>Find Your Dream Home</h2>
+                    <p>Discover the perfect property that matches your lifestyle and preferences.</p>
+                    <a href="#" class="cta-button" onclick="showSection('listings')">Browse Properties</a>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <h2 class="section-title">Search Properties</h2>
+                <div class="search-bar">
+                    <input type="text" id="homeSearchInput" placeholder="Search by location, property name, or address">
+                    <div id="homeSuggestions"></div>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="propertyType">Property Type</label>
+                        <select id="propertyType">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="condo">Condo</option>
+                            <option value="townhouse">Townhouse</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="regionFilter">Region</label>
+                        <select id="regionFilter">
+                            <option value="">All Regions</option>
+                            <option value="downtown">Downtown</option>
+                            <option value="suburban">Suburban</option>
+                            <option value="coastal">Coastal</option>
+                            <option value="rural">Rural</option>
+                            <option value="mountain">Mountain</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priceRange">Price Range</label>
+                        <select id="priceRange">
+                            <option value="">Any Price</option>
+                            <option value="100000-300000">$100,000 - $300,000</option>
+                            <option value="300000-500000">$300,000 - $500,000</option>
+                            <option value="500000-750000">$500,000 - $750,000</option>
+                            <option value="750000-1000000">$750,000 - $1,000,000</option>
+                            <option value="1000000+">$1,000,000+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+ Bedrooms</option>
+                            <option value="2">2+ Bedrooms</option>
+                            <option value="3">3+ Bedrooms</option>
+                            <option value="4">4+ Bedrooms</option>
+                            <option value="5">5+ Bedrooms</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <select id="bathrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+ Bathrooms</option>
+                            <option value="2">2+ Bathrooms</option>
+                            <option value="3">3+ Bathrooms</option>
+                            <option value="4">4+ Bathrooms</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <div class="checkbox-group">
+                            <label for="newListings">
+                                <input type="checkbox" id="newListings">
+                                <span class="checkbox-custom"></span>
+                                New Listings Only
+                            </label>
+                        </div>
+                    </div>
+                    <button class="filter-button">Search Properties</button>
+                </div>
+            </div>
+
+            <div class="featured-section">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Properties</h2>
+                    <a href="#" class="view-all" onclick="showSection('listings')">View All</a>
+                </div>
+                <div class="listings" id="propertyListings">
+                    <!-- Properties will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Listings Section -->
+        <section id="listingsSection" class="section">
+            <h2 class="section-title">Available Properties</h2>
+            <div class="search-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by location, property name, or address">
+                    <div id="suggestions"></div>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="listingType">Listing Type</label>
+                        <select id="listingType">
+                            <option value="">All Types</option>
+                            <option value="sale">For Sale</option>
+                            <option value="rent">For Rent</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="listingRegion">Region</label>
+                        <select id="listingRegion">
+                            <option value="">All Regions</option>
+                            <option value="downtown">Downtown</option>
+                            <option value="suburban">Suburban</option>
+                            <option value="coastal">Coastal</option>
+                            <option value="rural">Rural</option>
+                            <option value="mountain">Mountain</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="listingPrice">Price Range</label>
+                        <select id="listingPrice">
+                            <option value="">Any Price</option>
+                            <option value="100000-300000">$100,000 - $300,000</option>
+                            <option value="300000-500000">$300,000 - $500,000</option>
+                            <option value="500000-750000">$500,000 - $750,000</option>
+                            <option value="750000-1000000">$750,000 - $1,000,000</option>
+                            <option value="1000000+">$1,000,000+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="listingBeds">Bedrooms</label>
+                        <select id="listingBeds">
+                            <option value="">Any</option>
+                            <option value="1">1+ Bedrooms</option>
+                            <option value="2">2+ Bedrooms</option>
+                            <option value="3">3+ Bedrooms</option>
+                            <option value="4">4+ Bedrooms</option>
+                            <option value="5">5+ Bedrooms</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <div class="checkbox-group">
+                            <label for="listingNewOnly">
+                                <input type="checkbox" id="listingNewOnly">
+                                <span class="checkbox-custom"></span>
+                                New Listings Only
+                            </label>
+                        </div>
+                    </div>
+                    <button class="filter-button">Apply Filters</button>
+                </div>
+            </div>
+            <div class="listings" id="allPropertyListings">
+                <!-- Properties will be loaded dynamically -->
+            </div>
+        </section>
+        <section id="favoritesSection" class="section">
+            <h2 class="section-title">Your Favorite Properties</h2>
+            <div class="listings" id="favoriteListings">
+                <!-- Favorites will be loaded dynamically -->
+                <p class="no-favorites">You don't have any content liked yet!</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="aboutSection" class="section">
+            <div class="about-section">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://picsum.photos/id/1050/600/400" alt="About Us">
+                    </div>
+                    <div class="about-text">
+                        <h2>About Real Estate Hub</h2>
+                        <p>Real Estate Hub is your trusted partner in finding the perfect property. With years of
+                            experience in the real estate market, we've helped thousands of families and individuals
+                            find their dream homes.</p>
+                        <p>Our mission is to make the process of buying, selling, or renting properties as smooth and
+                            stress-free as possible. We combine innovative technology with personalized service to
+                            deliver an exceptional experience.</p>
+                        <p>Whether you're a first-time homebuyer, looking to upgrade, or an investor seeking
+                            opportunities, our team of expert agents is here to guide you every step of the way.</p>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Properties Sold</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfied Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">250+</div>
+                        <div class="stat-label">Expert Agents</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="values-section">
+                <h2 class="section-title">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Integrity</h3>
+                        <p>We believe in honest communication and transparent dealings with all our clients and
+                            partners.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-search"></i></div>
+                        <h3>Excellence</h3>
+                        <p>We strive for excellence in everything we do, providing outstanding service that exceeds
+                            expectations.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-fist-raised"></i></div>
+                        <h3>Commitment</h3>
+                        <p>We are committed to helping our clients achieve their real estate goals with dedication and
+                            perseverance.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-seedling"></i></div>
+                        <h3>Innovation</h3>
+                        <p>We embrace new technologies and ideas to continuously improve our services and stay ahead of
+                            market trends.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-members">
+                    <div class="team-member">
+                        <img src="https://picsum.photos/id/1062/400/500" alt="Team Member">
+                        <div class="team-info">
+                            <h3>John Smith</h3>
+                            <p>CEO & Founder</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fas fa-mobile-alt"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-user-friends"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://picsum.photos/id/1066/400/500" alt="Team Member">
+                        <div class="team-info">
+                            <h3>Emily Johnson</h3>
+                            <p>Sales Director</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fas fa-mobile-alt"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-user-friends"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://picsum.photos/id/1074/400/500" alt="Team Member">
+                        <div class="team-info">
+                            <h3>Michael Brown</h3>
+                            <p>Senior Agent</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fas fa-mobile-alt"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-user-friends"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://picsum.photos/id/1070/400/500" alt="Team Member">
+                        <div class="team-info">
+                            <h3>Sarah Williams</h3>
+                            <p>Marketing Manager</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fas fa-mobile-alt"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-user-friends"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contactSection" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-section">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-details">
+                                <h3>Address</h3>
+                                <p>123 Real Estate Lane, Suite 200</p>
+                                <p>Property City, RE 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-details">
+                                <h3>Phone</h3>
+                                <p>Main Office: (123) 456-7890</p>
+                                <p>Support: (123) 456-7891</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>info@realestatehub.com</p>
+                                <p>support@realestatehub.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                            <div class="contact-details">
+                                <h3>Office Hours</h3>
+                                <p>Monday-Friday: 9:00 AM - 6:00 PM</p>
+                                <p>Saturday: 10:00 AM - 3:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="What is this regarding?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Real Estate Hub</h3>
+                    <p>Your trusted partner in finding the perfect property. With years of experience in the real estate
+                        market, we've helped thousands of families and individuals find their dream homes.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="showSection('home')">Home</a>
+                    <a href="#" onclick="showSection('listings')">Properties</a>
+                    <a href="#" onclick="showSection('about')">About Us</a>
+                    <a href="#" onclick="showSection('contact')">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Property Types</h3>
+                    <a href="#">Houses</a>
+                    <a href="#">Apartments</a>
+                    <a href="#">Condos</a>
+                    <a href="#">Townhouses</a>
+                    <a href="#">Commercial</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <p>Subscribe to our newsletter for the latest property listings and real estate news.</p>
+                    <form action="#" method="post">
+                        <input type="email" placeholder="Your email address"
+                            style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; background-color: var(--dark-bg); color: var(--dark-text);">
+                        <button type="submit"
+                            style="background: var(--secondary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Real Estate Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="themeToggle" class="theme-toggle">🌙</button>
+
+   <script src="main.js"></script>
+</body>
+
+</html>
